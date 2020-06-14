@@ -2,7 +2,7 @@
   "name": "user-access-app-be",
   "version": "1.0.0",
   "description": "BE to the user access application",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js"
