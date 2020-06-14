@@ -1,0 +1,24 @@
+{
+  "name": "user-access-app-be",
+  "version": "1.0.0",
+  "description": "BE to the user access application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gauriz/ng9-node-express-sample-project.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "user-access-app"
+  ],
+  "author": "gauriz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gauriz/ng9-node-express-sample-project/issues"
+  },
+  "homepage": "https://github.com/gauriz/ng9-node-express-sample-project#readme"
+}
