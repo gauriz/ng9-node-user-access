@@ -23,6 +23,7 @@ module.exports.generateAuthToken = async function (req, res, collection) {
             incrementLoginCount(collection, user._id);
             res.status(200).json({
                 userId: user._id,
+                category: user.category_code,
                 token: token
             });
         } else {

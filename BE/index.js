@@ -1,11 +1,14 @@
 const loginController = require('./controllers/login.controller');
 const userController = require('./controllers/user.controller');
-const bcryption = require('./utilityJS/bcrypt-password');
 const express = require('express');
 var MongoClient = require('mongodb').MongoClient;
+const bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 MongoClient.connect('mongodb://localhost:27017/', { useUnifiedTopology: true })
     .then(client => {
@@ -34,5 +37,10 @@ app.get('/users', async (req, res) => {
     await userController.listUsers(req, res, collection, categoriesCollection);
 }
 );
+
+app.post('/add-user', async (req, res) => {
+    const collection = req.app.locals.usersCollection;
+    await userController.addUser(req, res, collection);
+});
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

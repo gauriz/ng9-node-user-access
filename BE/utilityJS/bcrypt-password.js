@@ -5,7 +5,7 @@ const salt = bcrypt.genSaltSync(10);
 
 module.exports.cryptPassword = async function (password) {
     var hash = bcrypt.hashSync(password, salt);
-    console.log(hash);
+    return hash;
 }
 
 module.exports.comparePassword = function (password, hash) {
