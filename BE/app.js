@@ -49,4 +49,9 @@ app.post('/add-user', async (req, res) => {
     await userController.addUser(req, res, collection);
 });
 
+app.get('/user-logs', async (req, res) => {
+    const loginSession = req.app.locals.loginSessionCollection;
+    await userController.userLogs(req, res, loginSession);
+});
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));

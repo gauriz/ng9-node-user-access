@@ -1,7 +1,11 @@
 const authenticate = require('./login.controller');
 const bcryption = require('../utilityJS/bcrypt-password');
 
-module.exports.listUsers = async function (req, res, collection, categoriesCollection) {
+module.exports.listUsers = listUserEP;
+module.exports.addUser = addUser;
+module.exports.userLogs = userLogs;
+
+async function listUserEP(req, res, collection, categoriesCollection) {
     let authenticated = await authenticate.authenticateUser(req, res, collection);
     if (authenticated === true) {
         let user_list = await collection.find().toArray();
@@ -12,7 +16,7 @@ module.exports.listUsers = async function (req, res, collection, categoriesColle
     }
 }
 
-module.exports.addUser = async function (req, res, collection) {
+async function addUser(req, res, collection) {
     const body = req.body;
     let password = await bcryption.cryptPassword(body.password);
     try {
@@ -42,10 +46,7 @@ module.exports.addUser = async function (req, res, collection) {
     } catch (err) {
         res.setHeader('Content-Type', 'application/json');
         res.send({ error: err })
-    } finally {
-        console.log('We do cleanup here');
     }
-
 }
 
 function listUsers(users, categories) {
@@ -65,4 +66,25 @@ function listUsers(users, categories) {
         retList.push(ret);
     });
     return retList;
+}
+
+async function userLogs(req, res, loginSession) {
+    let searchParam = {};
+    let sort = {};
+
+    if (req.query) {
+        if ('userName' in req.query) {
+            searchParam['user_name'] = { '$regex': req.query.userName, '$options': 'i' };
+        }
+        if ('ip' in req.query) {
+            searchParam['ip'] = { '$regex': req.query.ip, '$options': 'i' };
+        }
+        if ('sortDir' in req.query && 'sortKey' in req.query) {
+            sort[req.query.sortKey] = req.query.sortDir === 'asc' ? 1 : -1;
+        }
+    }
+    let logs = await loginSession.find(searchParam).sort(sort).toArray();
+    res.status(200).json({
+        users: logs
+    });
 }
