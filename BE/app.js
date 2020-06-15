@@ -17,6 +17,8 @@ MongoClient.connect('mongodb://localhost:27017/', { useUnifiedTopology: true })
         app.locals.usersCollection = usersCollection;
         const categoriesCollection = db.collection('categories');
         app.locals.categoriesCollection = categoriesCollection;
+        const loginSessionCollection = db.collection('login_sessions');
+        app.locals.loginSessionCollection = loginSessionCollection;
     });
 
 
@@ -28,6 +30,8 @@ MongoClient.connect('mongodb://localhost:27017/', { useUnifiedTopology: true })
 app.get('/login', async (req, res) => {
     const collection = req.app.locals.usersCollection;
     await loginController.generateAuthToken(req, res, collection);
+    const loginSession = req.app.locals.loginSessionCollection;
+    loginController.loginSession(req, res, loginSession);
 }
 );
 

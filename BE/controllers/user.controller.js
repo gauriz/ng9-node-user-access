@@ -35,7 +35,6 @@ module.exports.addUser = async function (req, res, collection) {
                 login_count: 0,
                 hashed_password: password
             });
-        console.log(result.ops[0]);
         if (result && result.ops && Array.isArray(result.ops)) {
             res.setHeader('Content-Type', 'application/json');
             res.send({ response: 'User created sucessfully', userId: result.ops[0]._id })

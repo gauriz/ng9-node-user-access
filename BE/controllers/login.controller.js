@@ -84,3 +84,20 @@ async function incrementLoginCount(collection, userId) {
         console.log('Error in incrementing login count');
     }
 }
+
+module.exports.loginSession = async (req, res, loginSession) => {
+    try {
+        let ip = req.connection.remoteAddress.split(`:`).pop();
+        let result = await loginSession.insertOne(
+            {
+                user_name: req.query.username,
+                ip: ip,
+                login_time: new Date()
+            });
+        if (result && result.ops && Array.isArray(result.ops)) {
+            console.log('User Logged in ', req.query.username);
+        }
+    } catch (err) {
+        console.log('User Login Err ', req.query.username);
+    }
+}
