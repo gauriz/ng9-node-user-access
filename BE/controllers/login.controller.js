@@ -1,7 +1,9 @@
 const bcryption = require('../utilityJS/bcrypt-password');
+const logger = require('../utilityJS/logger');
 const secretKey = require('../secretKey.json');
 const jwt = require('jsonwebtoken');
 var ObjectId = require('mongodb').ObjectId;
+
 
 module.exports.generateAuthToken = async function (req, res, collection) {
     const userName = req.query.username;
@@ -9,6 +11,7 @@ module.exports.generateAuthToken = async function (req, res, collection) {
 
     let user = await collection.findOne({ user_name: userName });
     if (!user) {
+        logger.log('User not found : ' + userName);
         return res.status(401).json({
             error: 'User not found!'
         });
@@ -27,11 +30,13 @@ module.exports.generateAuthToken = async function (req, res, collection) {
                 token: token
             });
         } else {
+            logger.log('AUTH KEY not found. Contact administrator!');
             return res.status(401).json({
                 error: 'AUTH KEY not found. Contact administrator!'
             });
         }
     } else {
+        logger.log('Incorrect Password for user ' + userName + ':' + password);
         return res.status(401).json({
             error: 'Incorrect Password'
         });
@@ -53,6 +58,7 @@ module.exports.authenticateUser = async (req, res, collection) => {
                 console.log(userId);
                 let user_list = await collection.find({ "_id": ObjectId(userId) }).toArray();
                 if (user_list[0]._id != userId) {
+                    logger.log('Token with Invald User ID! ' + userId);
                     return res.status(401).json({
                         error: 'Invald User ID!'
                     });
@@ -60,17 +66,20 @@ module.exports.authenticateUser = async (req, res, collection) => {
                     return true;
                 }
             } else {
+                logger.log('Invalid Token');
                 res.status(401).json({
                     error: 'Invalid Authorizaton Token!'
                 });
             }
 
         } else {
+            logger.log('AUTH KEY not found');
             return res.status(401).json({
                 error: 'AUTH KEY not found. Contact administrator!'
             });
         }
     } catch (err) {
+        logger.log('Invalid Token');
         return res.status(401).json({
             error: 'Invalid Token!'
         });
@@ -81,7 +90,7 @@ async function incrementLoginCount(collection, userId) {
     try {
         await collection.updateOne({ "_id": userId }, { $inc: { "login_count": 1 } });
     } catch (err) {
-        console.log('Error in incrementing login count');
+        logger.log('Error in incrementing login count for ' + userId);
     }
 }
 
@@ -95,9 +104,9 @@ module.exports.loginSession = async (req, res, loginSession) => {
                 login_time: new Date()
             });
         if (result && result.ops && Array.isArray(result.ops)) {
-            console.log('User Logged in ', req.query.username);
+            // console.log('User Logged in ', req.query.username);
         }
     } catch (err) {
-        console.log('User Login Err ', req.query.username);
+        logger.log('User Login Err ' + req.query.username);
     }
 }

@@ -3,6 +3,8 @@ const userController = require('./controllers/user.controller');
 const express = require('express');
 var MongoClient = require('mongodb').MongoClient;
 const bodyParser = require("body-parser");
+var path = require('path');
+global.appRoot = path.resolve(__dirname);
 
 const app = express();
 const port = 3000;
