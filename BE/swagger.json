@@ -3,7 +3,7 @@
     "info": {
         "description": "SWAGGER for API's of  [gauriz/ng9-node-user-access](https://github.com/gauriz/ng9-node-user-access) ",
         "version": "1.0.0",
-        "title": "gauriz/ng9-node-user-access",
+        "title": "ng9-node-user-access",
         "contact": {
             "email": "gauri.x3@gmail.com"
         },
@@ -16,11 +16,7 @@
     "tags": [
         {
             "name": "login",
-            "description": "",
-            "externalDocs": {
-                "description": "REPO",
-                "url": "https://github.com/gauriz/ng9-node-user-access/tree/master/BE"
-            }
+            "description": ""
         }
     ],
     "schemes": [
@@ -150,8 +146,126 @@
                             "$ref": "#/definitions/post-user-model"
                         }
                     },
+                    "500": {
+                        "description": "Internal error",
+                        "schema": {
+                            "$ref": "#/definitions/error-model"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/image-upload/{id}": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "uploads an image",
+                "description": "",
+                "operationId": "uploadFile",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to upload image",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "file to upload",
+                        "required": false,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal error",
+                        "schema": {
+                            "$ref": "#/definitions/error-model"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/user-logs": {
+            "get": {
+                "tags": [
+                    "user logs"
+                ],
+                "summary": "get all user logs from the system",
+                "description": "",
+                "operationId": "userlogs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "sortKey",
+                        "in": "query",
+                        "description": "Sort Key",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortDir",
+                        "in": "query",
+                        "description": "Sort Direcion",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "userName",
+                        "in": "query",
+                        "description": "User Name",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/user-log-model"
+                        }
+                    },
                     "401": {
-                        "description": "Invalid username/password supplied"
+                        "description": "No authorization provided or Invalid Token!",
+                        "schema": {
+                            "$ref": "#/definitions/error-model"
+                        }
                     }
                 },
                 "security": [
@@ -223,21 +337,75 @@
                 "lastName": {
                     "type": "string"
                 },
-                "categoryCode": {
+                "gender": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "supervisorId": {
+                    "type": "string"
+                },
+                "supervisorName": {
+                    "type": "string"
+                },
+                "email": {
                     "type": "string"
                 },
                 "category": {
                     "type": "string"
                 },
-                "loginCount": {
+                "password": {
+                    "type": "string"
+                },
+                "expYears": {
                     "type": "integer",
                     "format": "int32"
+                }
+            }
+        },
+        "post-user-model": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "error-model": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "user-log-model": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "login_time": {
+                    "type": "string"
                 }
             }
         }
     },
     "externalDocs": {
-        "description": "Find out more about Swagger",
-        "url": "http://swagger.io"
+        "description": "GITHUB Repo",
+        "url": "https://github.com/gauriz/ng9-node-user-access"
     }
 }

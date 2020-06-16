@@ -29,36 +29,40 @@ async function listUserEP(req, res) {
 }
 
 async function addUser(req, res) {
-    const body = req.body;
-    let password = await bcryption.cryptPassword(body.password);
-    try {
-        const collection = req.app.locals.usersCollection;
-        let result = await collection.insertOne(
-            {
-                user_name: body.userName,
-                first_name: body.firstName,
-                last_name: body.lastName,
-                gender: body.gender,
-                country_code: body.countryCode,
-                phone_number: body.phoneNumber,
-                experience_years: body.expYears,
-                image_path: body.imagePath,
-                email_id: body.email,
-                category_code: body.category,
-                supervisor: {
-                    id: body.supervisorId,
-                    name: body.supervisorName
-                },
-                login_count: 0,
-                hashed_password: password
+    let authenticated = await authenticate.authenticateUser(req, res, req.app.locals.usersCollection);
+    if (authenticated === true) {
+        const body = req.body;
+        let password = await bcryption.cryptPassword(body.password);
+        try {
+            const collection = req.app.locals.usersCollection;
+            let result = await collection.insertOne(
+                {
+                    user_name: body.userName,
+                    first_name: body.firstName,
+                    last_name: body.lastName,
+                    gender: body.gender,
+                    country_code: body.countryCode,
+                    phone_number: body.phoneNumber,
+                    experience_years: body.expYears,
+                    image_path: body.imagePath,
+                    email_id: body.email,
+                    category_code: body.category,
+                    supervisor: {
+                        id: body.supervisorId,
+                        name: body.supervisorName
+                    },
+                    login_count: 0,
+                    hashed_password: password
+                });
+            if (result && result.ops && Array.isArray(result.ops)) {
+                res.setHeader('Content-Type', 'application/json');
+                res.send({ response: 'User created sucessfully', userId: result.ops[0]._id })
+            }
+        } catch (err) {
+            res.status(500).json({
+                error: 'Duplicate username'
             });
-        if (result && result.ops && Array.isArray(result.ops)) {
-            res.setHeader('Content-Type', 'application/json');
-            res.send({ response: 'User created sucessfully', userId: result.ops[0]._id })
         }
-    } catch (err) {
-        res.setHeader('Content-Type', 'application/json');
-        res.send({ error: err })
     }
 }
 
@@ -89,37 +93,39 @@ function listUsers(users, categories) {
 }
 
 async function userLogs(req, res) {
-    let searchParam = {};
-    let sort = {};
+    let authenticated = await authenticate.authenticateUser(req, res, req.app.locals.usersCollection);
+    if (authenticated === true) {
+        let searchParam = {};
+        let sort = {};
 
-    if (req.query) {
-        if ('userName' in req.query) {
-            searchParam['user_name'] = { '$regex': req.query.userName, '$options': 'i' };
+        if (req.query) {
+            if ('userName' in req.query) {
+                searchParam['user_name'] = { '$regex': req.query.userName, '$options': 'i' };
+            }
+            if ('ip' in req.query) {
+                searchParam['ip'] = { '$regex': req.query.ip, '$options': 'i' };
+            }
+            if ('sortDir' in req.query && 'sortKey' in req.query) {
+                sort[req.query.sortKey] = req.query.sortDir === 'asc' ? 1 : -1;
+            }
         }
-        if ('ip' in req.query) {
-            searchParam['ip'] = { '$regex': req.query.ip, '$options': 'i' };
-        }
-        if ('sortDir' in req.query && 'sortKey' in req.query) {
-            sort[req.query.sortKey] = req.query.sortDir === 'asc' ? 1 : -1;
+        try {
+            const loginSession = req.app.locals.loginSessionCollection;
+            let logs = await loginSession.find(searchParam).sort(sort).toArray();
+            res.status(200).json({
+                users: logs
+            });
+        } catch (err) {
+            logger.log(err.name + ': ' + err.message);
+            res.status(500).json({
+                error: err.name + ': ' + err.message
+            });
         }
     }
-    try {
-        const loginSession = req.app.locals.loginSessionCollection;
-        let logs = await loginSession.find(searchParam).sort(sort).toArray();
-        res.status(200).json({
-            users: logs
-        });
-    } catch (err) {
-        logger.log(err.name + ': ' + err.message);
-        res.status(500).json({
-            error: err.name + ': ' + err.message
-        });
-    }
-
 }
 
 function imageUpload(req, res) {
-    upload.single('somefile')(req, res, function (err) {
+    upload.single('file')(req, res, function (err) {
         console.log(err);
         if (err instanceof multer.MulterError) {
             logger.log('Multer Parse Error ' + req.params.id);
