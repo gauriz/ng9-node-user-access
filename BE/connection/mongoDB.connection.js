@@ -19,4 +19,4 @@ Connection.options = {
     useUnifiedTopology: true,
 }
 
-module.exports = Connection 
+module.exports = Connection;
