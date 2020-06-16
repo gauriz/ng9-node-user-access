@@ -85,8 +85,8 @@ Creation of dummy user for usage :
 ```
 
 **Credentials for above mentioned user entry :**
-username : admin
-password: admin
+``` username : admin
+password: admin ```
 
 
 
