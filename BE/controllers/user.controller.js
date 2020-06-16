@@ -1,10 +1,20 @@
 const authenticate = require('./login.controller');
 const bcryption = require('../utilityJS/bcrypt-password');
 const logger = require('../utilityJS/logger');
+let multer = require('multer');
+var appRoot = require('app-root-path');
+var storage = multer.diskStorage({
+    destination: appRoot + '/profile-images/',
+    filename: function (req, file, cb) {
+        cb(null, req.params.id + '.jpg');
+    }
+});
+var upload = multer({ storage: storage });
 
 module.exports.listUsers = listUserEP;
 module.exports.addUser = addUser;
 module.exports.userLogs = userLogs;
+module.exports.imageUpload = imageUpload;
 
 async function listUserEP(req, res) {
     //limit & filters yet to be implemented
@@ -106,4 +116,22 @@ async function userLogs(req, res) {
         });
     }
 
+}
+
+function imageUpload(req, res) {
+    upload.single('somefile')(req, res, function (err) {
+        console.log(err);
+        if (err instanceof multer.MulterError) {
+            logger.log('Multer Parse Error ' + req.params.id);
+            return res.status(500).json({
+                error: 'Multer Parse Error'
+            });
+        } else if (err) {
+            logger.log('Error while uploading ' + req.params.id);
+            return res.status(500).json({
+                error: 'Error while uploading'
+            });
+        }
+        res.send({ message: 'Image uploaded successfully' });
+    })
 }
