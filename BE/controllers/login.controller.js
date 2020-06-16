@@ -3,9 +3,19 @@ const logger = require('../utilityJS/logger');
 const secretKey = require('../secretKey.json');
 const jwt = require('jsonwebtoken');
 var ObjectId = require('mongodb').ObjectId;
+const router = require('express').Router()
 
 
-module.exports.generateAuthToken = async function (req, res, collection) {
+module.exports.login = login;
+module.exports.authenticateUser = authenticateUser;
+
+
+async function login(req, res) {
+    await generateAuthToken(req, res, req.app.locals.usersCollection);
+    loginSession(req, req.app.locals.loginSessionCollection);
+};
+
+async function generateAuthToken(req, res, collection) {
     const userName = req.query.username;
     const password = req.query.password;
 
@@ -43,35 +53,36 @@ module.exports.generateAuthToken = async function (req, res, collection) {
     }
 }
 
-module.exports.authenticateUser = async (req, res, collection) => {
+async function authenticateUser(req, res, collection) {
     try {
         const token = req.headers.authorization;
         if (secretKey && secretKey.SECRET) {
             const decodedToken = await jwt.verify(token, secretKey.SECRET);
             if (decodedToken) {
                 const userId = decodedToken.userId;
-                if (new Date >= new Date(decodedToken.exp * 1000)) {
-                    return res.status(401).json({
-                        error: 'Token Expired',
-                    });
+                try {
+                    let user_list = await collection.find({ "_id": ObjectId(userId) }).toArray();
+                    if (user_list[0]._id != userId) {
+                        logger.log('Token with Invald User ID! ' + userId);
+                        return res.status(401).json({
+                            error: 'Invald User ID!'
+                        });
+                    } else {
+                        return true;
+                    }
                 }
-                console.log(userId);
-                let user_list = await collection.find({ "_id": ObjectId(userId) }).toArray();
-                if (user_list[0]._id != userId) {
+                catch (err) {
                     logger.log('Token with Invald User ID! ' + userId);
                     return res.status(401).json({
                         error: 'Invald User ID!'
                     });
-                } else {
-                    return true;
                 }
             } else {
                 logger.log('Invalid Token');
-                res.status(401).json({
-                    error: 'Invalid Authorizaton Token!'
+                return res.status(401).json({
+                    error: 'Invalid Token!'
                 });
             }
-
         } else {
             logger.log('AUTH KEY not found');
             return res.status(401).json({
@@ -79,9 +90,9 @@ module.exports.authenticateUser = async (req, res, collection) => {
             });
         }
     } catch (err) {
-        logger.log('Invalid Token');
+        logger.log('No authorization provided or Invalid Token');
         return res.status(401).json({
-            error: 'Invalid Token!'
+            error: 'No authorization provided or Invalid Token!'
         });
     }
 };
@@ -94,18 +105,15 @@ async function incrementLoginCount(collection, userId) {
     }
 }
 
-module.exports.loginSession = async (req, res, loginSession) => {
+async function loginSession(req, loginSession) {
     try {
         let ip = req.connection.remoteAddress.split(`:`).pop();
-        let result = await loginSession.insertOne(
+        loginSession.insertOne(
             {
                 user_name: req.query.username,
                 ip: ip,
                 login_time: new Date()
             });
-        if (result && result.ops && Array.isArray(result.ops)) {
-            // console.log('User Logged in ', req.query.username);
-        }
     } catch (err) {
         logger.log('User Login Err ' + req.query.username);
     }

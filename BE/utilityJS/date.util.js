@@ -14,9 +14,9 @@ function getMonth(month, flag) {
     let months = ['January', 'February', ' March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let monthSc = ['JAN', 'FEB', ' MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
     switch (flag) {
-        case 'sc': return monthSc[month]; break;
-        case 'full': return months[month]; break;
-        default: return 'UNDEFINED'; break;
+        case 'sc': return monthSc[month];
+        case 'full': return months[month];
+        default: return 'UNDEFINED';
     }
 }
 
