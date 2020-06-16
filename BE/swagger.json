@@ -1,0 +1,243 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "SWAGGER for API's of  [gauriz/ng9-node-user-access](https://github.com/gauriz/ng9-node-user-access) ",
+        "version": "1.0.0",
+        "title": "gauriz/ng9-node-user-access",
+        "contact": {
+            "email": "gauri.x3@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "localhost:3000",
+    "tags": [
+        {
+            "name": "login",
+            "description": "",
+            "externalDocs": {
+                "description": "REPO",
+                "url": "https://github.com/gauriz/ng9-node-user-access/tree/master/BE"
+            }
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/login": {
+            "get": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "logs into the application with an existing user ID and password",
+                "description": "",
+                "operationId": "loginUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "User name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "headers": {
+                            "X-Expires-After": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "date in UTC when token expires"
+                            },
+                            "X-Rate-Limit": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "calls per hour allowed by the user"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/login-model"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid username/password supplied"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "get all users from the system",
+                "description": "",
+                "operationId": "getusers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/user-model"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid username/password supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/add-user": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "post new user to the system",
+                "description": "",
+                "operationId": "postuers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User object that needs to be added to the system",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/add-user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/post-user-model"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid username/password supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "login-model": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "user-model": {
+            "type": "object",
+            "properties": {
+                "userName": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "categoryCode": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "loginCount": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "add-user": {
+            "type": "object",
+            "properties": {
+                "userName": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "categoryCode": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "loginCount": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    }
+}
