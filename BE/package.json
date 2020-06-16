@@ -31,6 +31,6 @@
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.9",
     "nodemon": "^2.0.4",
-    "save-dev": "0.0.1-security" 
+    "save-dev": "0.0.1-security"
   }
 }
