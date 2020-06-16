@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Controll-Allow-Headers', 'Content-Type');
     next();
 });
-Connection.Connection.connectToMongo(app);
+Connection.connectToMongo(app);
 
 app.use('/', routes); 
 
