@@ -30,7 +30,7 @@
                 ],
                 "summary": "logs into the application with an existing user ID and password",
                 "description": "",
-                "operationId": "loginUser",
+                "operationId": "login",
                 "consumes": [
                     "application/json"
                 ],
@@ -85,7 +85,7 @@
                 ],
                 "summary": "get all users from the system",
                 "description": "",
-                "operationId": "getusers",
+                "operationId": "listUsers",
                 "consumes": [
                     "application/json"
                 ],
@@ -121,7 +121,7 @@
                 ],
                 "summary": "post new user to the system",
                 "description": "",
-                "operationId": "postuers",
+                "operationId": "addUser",
                 "consumes": [
                     "application/json"
                 ],
@@ -170,7 +170,7 @@
                 ],
                 "summary": "uploads an image",
                 "description": "",
-                "operationId": "uploadFile",
+                "operationId": "v",
                 "consumes": [
                     "multipart/form-data"
                 ],
@@ -224,7 +224,7 @@
                 ],
                 "summary": "get all user logs from the system",
                 "description": "",
-                "operationId": "userlogs",
+                "operationId": "userLogs",
                 "consumes": [
                     "application/json"
                 ],
