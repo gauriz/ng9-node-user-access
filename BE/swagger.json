@@ -1,0 +1,411 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "SWAGGER for API's of  [gauriz/ng9-node-user-access](https://github.com/gauriz/ng9-node-user-access) ",
+        "version": "1.0.0",
+        "title": "ng9-node-user-access",
+        "contact": {
+            "email": "gauri.x3@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "localhost:3000",
+    "tags": [
+        {
+            "name": "login",
+            "description": ""
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/login": {
+            "get": {
+                "tags": [
+                    "login"
+                ],
+                "summary": "logs into the application with an existing user ID and password",
+                "description": "",
+                "operationId": "login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "User name",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "headers": {
+                            "X-Expires-After": {
+                                "type": "string",
+                                "format": "date-time",
+                                "description": "date in UTC when token expires"
+                            },
+                            "X-Rate-Limit": {
+                                "type": "integer",
+                                "format": "int32",
+                                "description": "calls per hour allowed by the user"
+                            }
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/login-model"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid username/password supplied"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "get all users from the system",
+                "description": "",
+                "operationId": "listUsers",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/user-model"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid username/password supplied"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/add-user": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "post new user to the system",
+                "description": "",
+                "operationId": "addUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User object that needs to be added to the system",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/add-user"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/post-user-model"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal error",
+                        "schema": {
+                            "$ref": "#/definitions/error-model"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/image-upload/{id}": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "uploads an image",
+                "description": "",
+                "operationId": "v",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of user to upload image",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "file to upload",
+                        "required": false,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/ApiResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal error",
+                        "schema": {
+                            "$ref": "#/definitions/error-model"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        },
+        "/user-logs": {
+            "get": {
+                "tags": [
+                    "user logs"
+                ],
+                "summary": "get all user logs from the system",
+                "description": "",
+                "operationId": "userLogs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "sortKey",
+                        "in": "query",
+                        "description": "Sort Key",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "sortDir",
+                        "in": "query",
+                        "description": "Sort Direcion",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "userName",
+                        "in": "query",
+                        "description": "User Name",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/user-log-model"
+                        }
+                    },
+                    "401": {
+                        "description": "No authorization provided or Invalid Token!",
+                        "schema": {
+                            "$ref": "#/definitions/error-model"
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "api_key": [
+                            "write:pets",
+                            "read:pets"
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "login-model": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "user-model": {
+            "type": "object",
+            "properties": {
+                "userName": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "categoryCode": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "loginCount": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "add-user": {
+            "type": "object",
+            "properties": {
+                "userName": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "countryCode": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "supervisorId": {
+                    "type": "string"
+                },
+                "supervisorName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "category": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "expYears": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            }
+        },
+        "post-user-model": {
+            "type": "object",
+            "properties": {
+                "response": {
+                    "type": "string"
+                },
+                "userId": {
+                    "type": "string"
+                }
+            }
+        },
+        "error-model": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                }
+            }
+        },
+        "user-log-model": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "string"
+                },
+                "user_name": {
+                    "type": "string"
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "login_time": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "GITHUB Repo",
+        "url": "https://github.com/gauriz/ng9-node-user-access"
+    }
+}

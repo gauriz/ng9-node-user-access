@@ -90,6 +90,12 @@ username : admin
 password: admin 
 ```
 
+Swagger Link :
+
+```
+http://localhost:3000/api-docs
+```
+
 
 
 
