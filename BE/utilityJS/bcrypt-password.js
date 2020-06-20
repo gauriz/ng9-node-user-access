@@ -9,8 +9,16 @@ module.exports.cryptPassword = async function (password) {
 }
 
 module.exports.comparePassword = function (password, hash) {
-    var synched = bcrypt.compareSync(password, hash);
-    return synched;
+    try {
+        var synched = bcrypt.compareSync(password, hash);
+        return synched;
+    } catch (err) {
+        let error = new Error();
+        error.name = 'BCRYPT_ERR';
+        error.msg = 'Cannot decrypt given password';
+        return error;
+    }
+
 }
 
 

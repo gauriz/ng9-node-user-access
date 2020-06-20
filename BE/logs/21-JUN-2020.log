@@ -1,0 +1,207 @@
+21-JUN-2020 12:40:28 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 12:55:14 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 12:57:23 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 12:59:34 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:00:33 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:24:06 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:24:15 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:24:26 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:25:39 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:26:10 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:26:15 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:32:57 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:33:13 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:34:38 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:36:30 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:36:38 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:37:05 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:38:08 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:38:13 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:38:40 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:41:21 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:43:44 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:43:51 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:44:12 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:45:33 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:45:45 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:45:51 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:46:09 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:46:35 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:46:44 AM [CRITICAL] MongoDB Connection Error
+21-JUN-2020 01:48:54 AM [WARN] User not found : nikhilsuresh7
+21-JUN-2020 01:48:54 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 01:48:54 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 01:50:40 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 01:56:01 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:00:50 AM [WARN] User not found : g2auri
+21-JUN-2020 02:01:11 AM [WARN] User not found : g2auri
+21-JUN-2020 02:11:20 AM [WARN] NO_USER_FOUND
+    at D:\GIT\ng9-node-express-sample-project\BE\core\login.core.js:9:25
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'User with username g2auri not found'
+}
+21-JUN-2020 02:13:32 AM [WARN] NO_USER_FOUND
+    at D:\GIT\ng9-node-express-sample-project\BE\core\login.core.js:9:25
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'User with username g2auri not found'
+}
+21-JUN-2020 02:14:13 AM [WARN] NO_USER_FOUND
+    at D:\GIT\ng9-node-express-sample-project\BE\core\login.core.js:9:25
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'User with username g2auri not found'
+}
+21-JUN-2020 02:15:27 AM [WARN] NO_USER_FOUND
+    at D:\GIT\ng9-node-express-sample-project\BE\core\login.core.js:9:25
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'User with username g2auri not found'
+}
+21-JUN-2020 02:15:27 AM [WARN] Error: Illegal arguments: number, string
+    at Object.bcrypt.compareSync (D:\GIT\ng9-node-express-sample-project\BE\node_modules\bcryptjs\dist\bcrypt.js:265:19)
+    at Object.module.exports.comparePassword (D:\GIT\ng9-node-express-sample-project\BE\utilityJS\bcrypt-password.js:12:26)
+    at Object.generateAuthToken (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:26:39)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5)
+    at async login (D:\GIT\ng9-node-express-sample-project\BE\controllers\login.controller.js:14:9)
+21-JUN-2020 02:17:42 AM [WARN] Error: Illegal arguments: number, string
+    at Object.bcrypt.compareSync (D:\GIT\ng9-node-express-sample-project\BE\node_modules\bcryptjs\dist\bcrypt.js:265:19)
+    at Object.module.exports.comparePassword (D:\GIT\ng9-node-express-sample-project\BE\utilityJS\bcrypt-password.js:12:26)
+    at Object.generateAuthToken (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:26:39)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5)
+    at async login (D:\GIT\ng9-node-express-sample-project\BE\controllers\login.controller.js:14:9)
+21-JUN-2020 02:18:16 AM [WARN] Error
+21-JUN-2020 02:18:39 AM [WARN] undefined
+21-JUN-2020 02:19:03 AM [WARN] Error: Illegal arguments: number, string
+    at Object.bcrypt.compareSync (D:\GIT\ng9-node-express-sample-project\BE\node_modules\bcryptjs\dist\bcrypt.js:265:19)
+    at Object.module.exports.comparePassword (D:\GIT\ng9-node-express-sample-project\BE\utilityJS\bcrypt-password.js:12:26)
+    at Object.generateAuthToken (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:26:39)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5)
+    at async login (D:\GIT\ng9-node-express-sample-project\BE\controllers\login.controller.js:14:9)
+21-JUN-2020 02:21:02 AM [WARN] BCRYPT_ERR
+    at Object.module.exports.comparePassword (D:\GIT\ng9-node-express-sample-project\BE\utilityJS\bcrypt-password.js:16:21)
+    at Object.generateAuthToken (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:26:39)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5)
+    at async login (D:\GIT\ng9-node-express-sample-project\BE\controllers\login.controller.js:14:9)
+21-JUN-2020 02:21:23 AM [WARN] BCRYPT_ERR
+    at Object.module.exports.comparePassword (D:\GIT\ng9-node-express-sample-project\BE\utilityJS\bcrypt-password.js:16:21)
+    at Object.generateAuthToken (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:26:39)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5)
+    at async login (D:\GIT\ng9-node-express-sample-project\BE\controllers\login.controller.js:14:9) {
+  name: 'BCRYPT_ERR',
+  msg: 'Cannot decrypt given password'
+}
+21-JUN-2020 02:26:23 AM [ERROR] AUTH KEY not found. Contact administrator!
+21-JUN-2020 02:36:50 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:36:50 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:36:50 AM [WARN] NO_USER_FOUND
+    at D:\GIT\ng9-node-express-sample-project\BE\core\login.core.js:9:25
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'User with username gaurfi not found'
+}
+21-JUN-2020 02:36:50 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:37:21 AM [ERROR] BCRYPT_ERR
+    at Object.module.exports.comparePassword (D:\GIT\ng9-node-express-sample-project\BE\utilityJS\bcrypt-password.js:16:21)
+    at Object.generateAuthToken (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:29:39)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5)
+    at async login (D:\GIT\ng9-node-express-sample-project\BE\controllers\login.controller.js:14:24) {
+  name: 'BCRYPT_ERR',
+  msg: 'Cannot decrypt given password'
+}
+21-JUN-2020 02:38:18 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:40:47 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:42:11 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:42:25 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:42:25 AM [WARN] Category collection not set
+21-JUN-2020 02:43:06 AM [WARN] Category collection not set
+21-JUN-2020 02:43:06 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:43:22 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:44:55 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:44:55 AM [WARN] MongoError: Cannot apply $inc to a value of non-numeric type. {_id: ObjectId('5eee6a87d0a837a58315a125')} has the field 'login_count' of non-numeric type bool
+    at Function.create (D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\core\error.js:51:12)
+    at toError (D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\utils.js:149:22)
+    at D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\operations\common_functions.js:376:39
+    at handler (D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\core\sdam\topology.js:913:24)
+    at D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\cmap\connection_pool.js:356:13
+    at handleOperationResult (D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\core\sdam\server.js:493:5)
+    at MessageStream.messageHandler (D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\cmap\connection.js:272:5)
+    at MessageStream.emit (events.js:203:13)
+    at processIncomingData (D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\cmap\message_stream.js:144:12)
+    at MessageStream._write (D:\GIT\ng9-node-express-sample-project\BE\node_modules\mongodb\lib\cmap\message_stream.js:42:5) {
+  driver: true,
+  name: 'MongoError',
+  index: 0,
+  code: 14
+}
+21-JUN-2020 02:45:40 AM [WARN] Error in incrementing login count for 5eee6a87d0a837a58315a125
+21-JUN-2020 02:45:40 AM [WARN] MongoError undefined
+21-JUN-2020 03:11:47 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:91:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:15:15 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:91:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:15:15 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:91:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:16:21 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:91:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:16:39 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:91:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:17:50 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:92:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:18:20 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:92:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:18:36 AM [WARN] NO_USERLIST_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:92:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USERLIST_FOUND',
+  msg: 'Failed to retrieve user list'
+}
+21-JUN-2020 03:19:53 AM [WARN] NO_USER_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:93:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'Failed to authenticate user'
+}
+21-JUN-2020 03:20:38 AM [WARN] NO_USER_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:93:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'Failed to authenticate user'
+}
+21-JUN-2020 03:21:04 AM [WARN] NO_USER_FOUND
+    at Object.authenticateUser (D:\GIT\ng9-node-express-sample-project\BE\service\login.service.js:94:33)
+    at processTicksAndRejections (internal/process/task_queues.js:85:5) {
+  name: 'NO_USER_FOUND',
+  msg: 'Failed to authenticate user'
+}
+21-JUN-2020 03:24:30 AM [WARN] Category collection not set
+21-JUN-2020 03:25:27 AM [WARN] Category collection not set

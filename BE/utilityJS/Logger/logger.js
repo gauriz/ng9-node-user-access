@@ -5,6 +5,7 @@ module.exports.log = log;
 module.exports.warn = warn;
 module.exports.error = error;
 module.exports.debug = debug;
+module.exports.critical = critical;
 global.logger;
 
 function setLoggerSystem(loggerSystem, multiFile) {
@@ -40,4 +41,11 @@ function debug(msg) {
         this.setLoggerSystem('fs', false);
     }
     this.logger.debug(msg);
+}
+
+function critical(msg) {
+    if (!this.logger) {
+        this.setLoggerSystem('fs', false);
+    }
+    this.logger.critical(msg);
 }

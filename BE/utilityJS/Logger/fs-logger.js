@@ -7,6 +7,7 @@ const infopath = appRoot + '/logs/info';
 const warnPath = appRoot + '/logs/warn';
 const errPath = appRoot + '/logs/error';
 const debugPath = appRoot + '/logs/debug';
+const criticalPath = appRoot + '/logs/critical';
 
 
 module.exports = class FSLogger {
@@ -17,6 +18,7 @@ module.exports = class FSLogger {
     warnFile;
     errorFile;
     debugFile;
+    criticalPath;
     multiFile = false;
     constructor(multiFile) {
         try {
@@ -26,6 +28,7 @@ module.exports = class FSLogger {
                 fs.mkdirSync(warnPath);
                 fs.mkdirSync(errPath);
                 fs.mkdirSync(debugPath);
+                fs.mkdirSync(criticalPath);
             } else {
                 fs.mkdirSync(logPath);
             }
@@ -81,6 +84,18 @@ module.exports = class FSLogger {
         }
         const fileSpec = !this.multiFile ? ' [DEBUG] ' : ' ';
         this.debugFile.write(dateUtil.getNow(0) + ' ' + this.today.toLocaleTimeString("en-US", this.options) + fileSpec + util.format(msg) + '\n');
+    }
+
+    critical(msg) {
+        if (!this.criticalFile) {
+            if (this.multiFile) {
+                this.criticalFile = fs.createWriteStream(criticalPath + '/' + dateUtil.getNow(0) + '.log', { flags: 'a' });
+            } else {
+                this.criticalFile = fs.createWriteStream(logPath + '/' + dateUtil.getNow(0) + '.log', { flags: 'a' });
+            }
+        }
+        const fileSpec = !this.multiFile ? ' [CRITICAL] ' : ' ';
+        this.criticalFile.write(dateUtil.getNow(0) + ' ' + this.today.toLocaleTimeString("en-US", this.options) + fileSpec + util.format(msg) + '\n');
     }
 
 }

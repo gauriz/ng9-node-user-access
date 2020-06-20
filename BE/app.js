@@ -3,7 +3,7 @@ const Connection = require('./connection/mongoDB.connection');
 const express = require('express');
 const bodyParser = require("body-parser");
 const swaggerUI = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json'); 
+const swaggerDocument = require('./swagger.json');
 
 const app = express();
 const port = 3000;
@@ -16,6 +16,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Controll-Allow-Headers', 'Content-Type');
     next();
 });
+
 Connection.connectToMongo(app);
 
 app.use('/', routes);

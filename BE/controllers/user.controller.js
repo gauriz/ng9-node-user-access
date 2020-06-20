@@ -34,6 +34,7 @@ async function addUser(req, res) {
     if (authenticated === true) {
         const body = req.body;
         let password = await bcryption.cryptPassword(body.password);
+        console.log(password);
         try {
             const collection = req.app.locals.usersCollection;
             let result = await collection.insertOne(
