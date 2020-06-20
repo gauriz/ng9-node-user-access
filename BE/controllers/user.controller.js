@@ -1,6 +1,6 @@
 const authenticate = require('./login.controller');
 const bcryption = require('../utilityJS/bcrypt-password');
-const logger = require('../utilityJS/logger');
+const logger = require('../utilityJS/logger/logger');
 let multer = require('multer');
 var appRoot = require('app-root-path');
 var storage = multer.diskStorage({
@@ -10,6 +10,7 @@ var storage = multer.diskStorage({
     }
 });
 var upload = multer({ storage: storage });
+logger.setLoggerSystem('fs', false);
 
 module.exports.listUsers = listUserEP;
 module.exports.addUser = addUser;
@@ -76,7 +77,7 @@ function listUsers(users, categories) {
                 return cat.code === user[displayKeys[3]]
             })[0].category
         } catch (err) {
-            logger.log('listUsers(): ' + err.message);
+            logger.warn('Category collection not set');
             category = 'undefined';
         }
         let ret = {
@@ -116,7 +117,7 @@ async function userLogs(req, res) {
                 users: logs
             });
         } catch (err) {
-            logger.log(err.name + ': ' + err.message);
+            logger.error(err.name + ': ' + err.message);
             res.status(500).json({
                 error: err.name + ': ' + err.message
             });
@@ -128,12 +129,12 @@ function imageUpload(req, res) {
     upload.single('file')(req, res, function (err) {
         console.log(err);
         if (err instanceof multer.MulterError) {
-            logger.log('Multer Parse Error ' + req.params.id);
+            logger.error('Multer Parse Error ' + req.params.id);
             return res.status(500).json({
                 error: 'Multer Parse Error'
             });
         } else if (err) {
-            logger.log('Error while uploading ' + req.params.id);
+            logger.error('Error while uploading ' + req.params.id);
             return res.status(500).json({
                 error: 'Error while uploading'
             });

@@ -1,0 +1,13 @@
+20-JUN-2020 11:27:59 PM [WARN] User not found : nikhialsuresh7
+20-JUN-2020 11:27:59 PM [INFO] Incorrect Password for user nikhilsuresh7:nikhilsures
+20-JUN-2020 11:28:54 PM [WARN] User not found : nikdhilsuresh7
+20-JUN-2020 11:28:54 PM [INFO] User not found : nikdhilsuresh7
+20-JUN-2020 11:28:54 PM [ERROR] User not found : nikdhilsuresh7
+20-JUN-2020 11:28:54 PM [DEBUG] User not found : nikdhilsuresh7
+20-JUN-2020 11:34:26 PM [INFO] Incorrect Password for user nikhilsuresh7:nikhilsuresh
+20-JUN-2020 11:34:26 PM [WARN] No authorization provided or Invalid Token
+20-JUN-2020 11:34:26 PM [DEBUG] listUsers(): Cannot read property 'category' of undefined
+20-JUN-2020 11:34:26 PM [DEBUG] listUsers(): Cannot read property 'category' of undefined
+20-JUN-2020 11:36:16 PM [WARN] Category collection not set
+20-JUN-2020 11:36:16 PM [WARN] Category collection not set
+20-JUN-2020 11:36:16 PM [ERROR] Multer Parse Error 5ee63d70c13512360450f1a0
